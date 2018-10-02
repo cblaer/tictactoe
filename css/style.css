@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+/* .playing-field {
+  display: flex;
+  flex-wrap: wrap;
+} */
+
+.row {
+  display: flex;
+}
+
+.box {
+  height: 50px;
+  width: 50px;
+  border: 1px solid black;
+  margin: 5px;
+}
+
+.player1.clicked {
+  background-color: blue;
+}
