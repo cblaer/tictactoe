@@ -19,9 +19,9 @@
 }
 
 .player1.clicked {
-  background-color: blue;
+  background-color: lightskyblue;
 }
 
 .player2.clicked {
-  background-color: red;
+  background-color: lightcoral;
 }

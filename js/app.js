@@ -11,16 +11,25 @@ var winningCombos = [
 ];
 var player1Moves = [];
 var player2Moves = [];
+var currentPlayer = 'player1';
 
-var currentPlayer = 'player2';
-
-function handleClick(event, currentPlayer) {
+function makeMove(event, currentPlayer) {
   event.target.classList.toggle(currentPlayer);
   event.target.classList.toggle('clicked');
   window[currentPlayer + 'Moves'].push(Number(event.target.id));
   
   if(window[currentPlayer + 'Moves'].length >= 3) {
     checkWinningCombo(currentPlayer);
+  }
+
+  alternatePlayer();
+}
+
+function alternatePlayer() {
+  if(currentPlayer === 'player1') {
+    currentPlayer = 'player2';
+  } else {
+    currentPlayer = 'player1';
   }
 }
 
@@ -47,6 +56,6 @@ function endGame(currentPlayer) {
 
 boxes.forEach(function(box){
   box.addEventListener('click', function() {
-    handleClick(event, currentPlayer);
+    makeMove(event, currentPlayer);
   });
 })
