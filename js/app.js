@@ -9,53 +9,85 @@ var winningCombos = [
   [1,5,9],
   [3,5,7]
 ];
+var players = document.querySelectorAll('.players');
+
+var player1 = document.querySelector('.players #player1');
 var player1Moves = [];
+var player1ScoreTextContent = document.querySelector('#player1 .score');
+var player1ScoreCount = 0;
+
 var player2Moves = [];
-var currentPlayer = 'player1';
+var player2 = document.querySelector('.players #player2');
+var player2ScoreTextContent = document.querySelector('#player2 .score');
+var player2ScoreCount = 0;
 
-function makeMove(event, currentPlayer) {
-  event.target.classList.toggle(currentPlayer);
+var activePlayer = 'player1';
+var boardSize = 3;
+
+function makeMove(event, activePlayer) {
+  event.target.classList.toggle(activePlayer);
   event.target.classList.toggle('clicked');
-  window[currentPlayer + 'Moves'].push(Number(event.target.id));
+  window[activePlayer + 'Moves'].push(Number(event.target.id));
   
-  if(window[currentPlayer + 'Moves'].length >= 3) {
-    checkWinningCombo(currentPlayer);
+  if(window[activePlayer + 'Moves'].length >= boardSize) {
+    checkForWin(activePlayer);
   }
-
-  alternatePlayer();
+  alternatePlayers();
 }
 
-function alternatePlayer() {
-  if(currentPlayer === 'player1') {
-    currentPlayer = 'player2';
+function alternatePlayers() {
+  if(activePlayer === 'player1') {
+    player2.classList.add('active');
+    player1.classList.remove('active');
+    activePlayer = 'player2';
   } else {
-    currentPlayer = 'player1';
+    player1.classList.add('active');
+    player2.classList.remove('active');
+    activePlayer = 'player1';
   }
 }
 
-function checkWinningCombo(currentPlayer) {
+function checkForWin(activePlayer) {
   var winningMoveCounter = 0;
-  var currentPlayerMoves = window[currentPlayer + 'Moves'];
+  var currentPlayerMoves = window[activePlayer + 'Moves'];
   for(var i = 0; i < winningCombos.length; i++) {
     for(var j = 0; j < currentPlayerMoves.length; j++) {
       if(winningCombos[i].includes(currentPlayerMoves[j])) {
         ++winningMoveCounter;
       }
     }
-    if(winningMoveCounter === 3) {
-      endGame(currentPlayer);
+    if(winningMoveCounter === boardSize) {
+      endGame(activePlayer);
       break;
     }
     winningMoveCounter = 0;
   }
 }
 
-function endGame(currentPlayer) {
-  console.log(currentPlayer + ' has won!');
+function updateScore(activePlayer) {
+  window[activePlayer + 'ScoreCount'] += 1;
+  window[activePlayer + 'ScoreTextContent'].textContent = window[activePlayer + 'ScoreCount'] + ' / ' + boardSize;
+}
+
+function endGame(activePlayer) {
+  console.log(activePlayer + ' has won!');
+  updateScore(activePlayer);
+  player1Moves = [];
+  player2Moves = [];
+  player1.classList.remove('active');
+  player2.classList.remove('active');
+  boxes.forEach(function(box) {
+    box.classList.remove('clicked');
+    box.classList.remove('player1');
+    box.classList.remove('player2');
+  })
+  players.forEach(function(player) {
+    player.classList.remove('active');
+  })
 }
 
 boxes.forEach(function(box){
   box.addEventListener('click', function() {
-    makeMove(event, currentPlayer);
+    makeMove(event, activePlayer);
   });
 })

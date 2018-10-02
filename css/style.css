@@ -25,3 +25,15 @@
 .player2.clicked {
   background-color: lightcoral;
 }
+
+.players .active {
+  color: green;
+}
+
+#player1 .score {
+  font-size: 30px;
+}
+
+#player2 .score {
+  font-size: 30px;
+}
