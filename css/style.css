@@ -21,3 +21,7 @@
 .player1.clicked {
   background-color: blue;
 }
+
+.player2.clicked {
+  background-color: red;
+}
