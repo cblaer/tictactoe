@@ -9,7 +9,10 @@ var winningCombos = [
   [1,5,9],
   [3,5,7]
 ];
+var playersSection = document.querySelector('.players');
 var players = document.querySelectorAll('.players');
+var playingField = document.querySelector('.playing-field');
+var playingFieldRows = document.querySelectorAll('.row');
 
 var player1 = document.querySelector('.players #player1');
 var player1Moves = [];
@@ -24,7 +27,9 @@ var player2ScoreCount = 0;
 var activePlayer = '';
 var boardSize = 3;
 
-var winner = document.querySelector('.winner');
+var winnerSection = document.querySelector('.winner');
+var winnerName = document.querySelector('.winner-name');
+var finalScore = document.querySelector('.final-score');
 var newGameButton = document.querySelector('.new-game-btn');
 
 function makeMove(event, activePlayer) {
@@ -86,10 +91,26 @@ function updateScore(activePlayer) {
 }
 
 function endGame(activePlayer) {
+  player1.classList.add('hidden');
+  player2.classList.add('hidden');
   if(activePlayer === 'player1') {
-    winner.textContent = activePlayer + ' has won ' + player1ScoreCount + ' to ' + player2ScoreCount;
+    playersSection.classList.add('hidden');
+    playingField.classList.add('winner-player1');
+    playingFieldRows.forEach(function(row) {
+      row.classList.add('hidden');
+    })
+    winnerSection.classList.remove('hidden');
+    winnerName.textContent = 'The Don has won';
+    finalScore.textContent = player1ScoreCount + ' to ' + player2ScoreCount;
   } else {
-    winner.textContent = activePlayer + ' has won ' + player2ScoreCount + ' to ' + player1ScoreCount;
+    playersSection.classList.add('hidden');
+    playingField.classList.add('winner-player2');
+    playingFieldRows.forEach(function(row) {
+      row.classList.add('hidden');
+    })
+    winnerSection.classList.remove('hidden');
+    winnerName.textContent = 'Master Kim has won';
+    finalScore.textContent = player2ScoreCount + ' to ' + player1ScoreCount;
   }
 }
 
@@ -110,7 +131,17 @@ function startNewGame() {
   player1ScoreTextContent.textContent = '0 / ' + boardSize;
   player2ScoreCount = 0;
   player2ScoreTextContent.textContent = '0 / ' + boardSize;
-  winner.textContent = '';
+  winnerName.textContent = '';
+  finalScore.textContent = '';
+  playersSection.classList.remove('hidden');
+  player1.classList.remove('hidden');
+  player2.classList.remove('hidden');
+  playingField.classList.remove('winner-player1');
+  playingField.classList.remove('winner-player2');
+  playingFieldRows.forEach(function(row) {
+    row.classList.remove('hidden');
+  })
+  winnerSection.classList.add('hidden');
   setStartingPlayerRandomly();
 }
 

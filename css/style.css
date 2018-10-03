@@ -53,14 +53,12 @@ main {
 }
 
 .player1.clicked {
-  /* background-color: lightskyblue; */
   background-image: url(../images/rocket-usa.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .player2.clicked {
-  /* background-color: lightcoral; */
   background-image: url(../images/rocket-nrthkorea.png);
   background-repeat: no-repeat;
   background-position: center;
@@ -85,7 +83,6 @@ main {
   }
 
   main {
-    /* background-color: white; */
     background-image: -webkit-linear-gradient( white, lightskyblue);
     width: 100%;
     height: 100%;
@@ -93,30 +90,82 @@ main {
 
   .logo {
     width: 100%;
+    height: 15%;
   }
 
   .players {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+    height: 40%;
   }
 
   #player1, #player2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 50%;
   }
 
+  .players.hidden {
+    display: none;
+  }
+
   #player1 img, #player2 img {
-    /* height: 100px; */
     width: 70%;
+  }
+
+  #player1.hidden, #player2.hidden {
+    display: none;
+  }
+
+  .row.hidden {
+    display: none;
+  }
+
+  .winner.hidden {
+    display: none;
   }
 
   .playing-field {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    height: 70%;
+    justify-content: center;
+  }
+
+  .winner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20%;
+    width: 100%;
+    font-size: 2em;
+  }
+
+  .final-score {
+    font-size: 1.5em;
+  }
+
+  .winner-player1 {
+    width: 90%;
+    height: 90%;
+    background-image: url(../images/trump-rocket.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .winner-player2 {
+    width: 90%;
+    height: 90%;
+    background-image: url(../images/kim-rocket.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   .box {
@@ -146,6 +195,7 @@ main {
 
   .new-game-btn {
     width: 100%;
-    font-size: 30px;
+    height: 15%;
+    font-size: 2em;
   }
 }
