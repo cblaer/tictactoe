@@ -25,7 +25,7 @@ var activePlayer = '';
 var boardSize = 3;
 
 var winner = document.querySelector('.winner');
-var newGameButton = document.querySelector('.new-game');
+var newGameButton = document.querySelector('.new-game-btn');
 
 function makeMove(event, activePlayer) {
   if(!event.target.classList.contains('clicked')) {
@@ -110,6 +110,7 @@ function startNewGame() {
   player1ScoreTextContent.textContent = '0 / ' + boardSize;
   player2ScoreCount = 0;
   player2ScoreTextContent.textContent = '0 / ' + boardSize;
+  winner.textContent = '';
   setStartingPlayerRandomly();
 }
 

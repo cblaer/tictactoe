@@ -2,10 +2,37 @@
   box-sizing: border-box;
 }
 
-/* .playing-field {
+html {
+  height: 100%;
   display: flex;
-  flex-wrap: wrap;
-} */
+  align-items: center;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+  background-color: mediumslateblue;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 60%;
+  height: 80%;
+  background-color: pink;
+}
+
+.logo {
+  width: 100%;
+  height: 100px;
+  background-color: lightgrey;
+  text-align: center;
+}
 
 .row {
   display: flex;
@@ -15,25 +42,110 @@
   height: 50px;
   width: 50px;
   border: 1px solid black;
-  margin: 5px;
+  margin: 0;
+}
+
+.new-game-btn {
+  width: 80%;
+  height: 75px;
+  border: 1px solid black;
+  background-color: red;
 }
 
 .player1.clicked {
-  background-color: lightskyblue;
+  /* background-color: lightskyblue; */
+  background-image: url(../images/rocket-usa.png);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .player2.clicked {
-  background-color: lightcoral;
+  /* background-color: lightcoral; */
+  background-image: url(../images/rocket-nrthkorea.png);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .players .active {
   color: green;
 }
 
-#player1 .score {
+#player1 .score, #player2 .score {
   font-size: 30px;
 }
 
-#player2 .score {
-  font-size: 30px;
+@media (max-width: 400px) {
+  html {
+    height: 100%;
+  }
+
+  body {
+    height: 100%;
+    margin: 0;
+  }
+
+  main {
+    /* background-color: white; */
+    background-image: -webkit-linear-gradient( white, lightskyblue);
+    width: 100%;
+    height: 100%;
+  }
+
+  .logo {
+    width: 100%;
+  }
+
+  .players {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  #player1, #player2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+  }
+
+  #player1 img, #player2 img {
+    /* height: 100px; */
+    width: 70%;
+  }
+
+  .playing-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .box {
+    width: 30vw;
+    height: 30vw;
+    border: 3px solid black;
+  }
+
+  .row:first-child .box,
+  .row:last-child .box{
+    border-top: 0;
+    border-bottom: 0;
+  }
+
+  .row:first-child .box:first-child,
+  .row:first-child .box:last-child,
+  .row:last-child .box:first-child,
+  .row:last-child .box:last-child {
+    border: 0;
+  }
+
+  .row .box:first-child,
+  .row .box:last-child {
+    border-right: 0;
+    border-left: 0;
+  }
+
+  .new-game-btn {
+    width: 100%;
+    font-size: 30px;
+  }
 }
