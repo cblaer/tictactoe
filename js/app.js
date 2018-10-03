@@ -21,18 +21,23 @@ var player2 = document.querySelector('.players #player2');
 var player2ScoreTextContent = document.querySelector('#player2 .score');
 var player2ScoreCount = 0;
 
-var activePlayer = 'player1';
+var activePlayer = '';
 var boardSize = 3;
 
+var winner = document.querySelector('.winner');
+var newGameButton = document.querySelector('.new-game');
+
 function makeMove(event, activePlayer) {
-  event.target.classList.toggle(activePlayer);
-  event.target.classList.toggle('clicked');
-  window[activePlayer + 'Moves'].push(Number(event.target.id));
-  
-  if(window[activePlayer + 'Moves'].length >= boardSize) {
-    checkForWin(activePlayer);
+  if(!event.target.classList.contains('clicked')) {
+    event.target.classList.toggle(activePlayer);
+    event.target.classList.toggle('clicked');
+    window[activePlayer + 'Moves'].push(Number(event.target.id));
+    
+    if(window[activePlayer + 'Moves'].length >= boardSize) {
+      checkForWin(activePlayer);
+    }
+    alternatePlayers();
   }
-  alternatePlayers();
 }
 
 function alternatePlayers() {
@@ -57,7 +62,7 @@ function checkForWin(activePlayer) {
       }
     }
     if(winningMoveCounter === boardSize) {
-      endGame(activePlayer);
+      updateScore(activePlayer);
       break;
     }
     winningMoveCounter = 0;
@@ -67,11 +72,28 @@ function checkForWin(activePlayer) {
 function updateScore(activePlayer) {
   window[activePlayer + 'ScoreCount'] += 1;
   window[activePlayer + 'ScoreTextContent'].textContent = window[activePlayer + 'ScoreCount'] + ' / ' + boardSize;
+  if (window[activePlayer + 'ScoreCount'] === boardSize) {
+    endGame(activePlayer);
+  } else {
+    player1Moves = [];
+    player2Moves = [];
+    boxes.forEach(function(box) {
+      box.classList.remove('clicked');
+      box.classList.remove('player1');
+      box.classList.remove('player2');
+    })
+  }
 }
 
 function endGame(activePlayer) {
-  console.log(activePlayer + ' has won!');
-  updateScore(activePlayer);
+  if(activePlayer === 'player1') {
+    winner.textContent = activePlayer + ' has won ' + player1ScoreCount + ' to ' + player2ScoreCount;
+  } else {
+    winner.textContent = activePlayer + ' has won ' + player2ScoreCount + ' to ' + player1ScoreCount;
+  }
+}
+
+function startNewGame() {
   player1Moves = [];
   player2Moves = [];
   player1.classList.remove('active');
@@ -84,6 +106,21 @@ function endGame(activePlayer) {
   players.forEach(function(player) {
     player.classList.remove('active');
   })
+  player1ScoreCount = 0;
+  player1ScoreTextContent.textContent = '0 / ' + boardSize;
+  player2ScoreCount = 0;
+  player2ScoreTextContent.textContent = '0 / ' + boardSize;
+  setStartingPlayerRandomly();
+}
+
+function setStartingPlayerRandomly() {
+  var randomPlayer = Math.floor((Math.random() * 2) + 1);
+  if (randomPlayer === 1) {
+    activePlayer = 'player1';
+  } else {
+    activePlayer = 'player2';
+  }
+  window[activePlayer].classList.add('active');
 }
 
 boxes.forEach(function(box){
@@ -91,3 +128,7 @@ boxes.forEach(function(box){
     makeMove(event, activePlayer);
   });
 })
+
+newGameButton.addEventListener('click', startNewGame);
+
+startNewGame();
