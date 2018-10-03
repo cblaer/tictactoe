@@ -100,8 +100,12 @@ function endGame(activePlayer) {
       row.classList.add('hidden');
     })
     winnerSection.classList.remove('hidden');
-    winnerName.textContent = 'The Don has won';
-    finalScore.textContent = player1ScoreCount + ' to ' + player2ScoreCount;
+    winnerName.textContent = 'The Don wins';
+    if(player2ScoreCount === 0) {
+      finalScore.textContent = player1ScoreCount + ' to nil';
+    } else {
+      finalScore.textContent = player1ScoreCount + ' to ' + player2ScoreCount;
+    }
   } else {
     playersSection.classList.add('hidden');
     playingField.classList.add('winner-player2');
@@ -109,8 +113,12 @@ function endGame(activePlayer) {
       row.classList.add('hidden');
     })
     winnerSection.classList.remove('hidden');
-    winnerName.textContent = 'Master Kim has won';
-    finalScore.textContent = player2ScoreCount + ' to ' + player1ScoreCount;
+    winnerName.textContent = 'Master Kim wins';
+    if(player1ScoreCount === 0) {
+      finalScore.textContent = player2ScoreCount + ' to nil';
+    } else {
+      finalScore.textContent = player2ScoreCount + ' to ' + player1ScoreCount;
+    }
   }
 }
 

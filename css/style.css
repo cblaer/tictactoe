@@ -15,6 +15,7 @@ body {
   width: 100%;
   height: 80%;
   background-color: mediumslateblue;
+  font-family: 'Mali', cursive,'Gill Sans';
 }
 
 main {
@@ -65,7 +66,7 @@ main {
 }
 
 .players .active {
-  color: green;
+  color: white;
 }
 
 #player1 .score, #player2 .score {
@@ -73,6 +74,10 @@ main {
 }
 
 @media (max-width: 400px) {
+  * {
+    box-sizing: border-box;
+  }
+  
   html {
     height: 100%;
   }
@@ -80,10 +85,13 @@ main {
   body {
     height: 100%;
     margin: 0;
+    color: rgb(29, 121, 178);
   }
 
   main {
-    background-image: -webkit-linear-gradient( white, lightskyblue);
+    /* background-image: -webkit-linear-gradient( white, rgb(254, 54, 54)); */
+    background-image: -webkit-radial-gradient(50% 65%, circle, white, rgb(254, 54, 54));
+    /* background-image: -webkit-radial-gradient(50% 65%, circle, white, rgb(254, 54, 54), rgb(178, 20, 20)); */
     width: 100%;
     height: 100%;
   }
@@ -91,6 +99,15 @@ main {
   .logo {
     width: 100%;
     height: 15%;
+    /* background-color: rgb(255, 253, 79);
+    background-image: url(../images/logo-blue.png); */
+    background-color: rgb(29, 121, 178);
+    /* background-image: url(../images/logo-yellow.png); */
+    background-image: url(../images/logo-lightred.png);
+    /* background-image: url(../images/logo-darkred.png); */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   .players {
@@ -153,7 +170,7 @@ main {
   .winner-player1 {
     width: 90%;
     height: 90%;
-    background-image: url(../images/trump-rocket.png);
+    background-image: url(../images/trump-rocket-winner.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -162,7 +179,7 @@ main {
   .winner-player2 {
     width: 90%;
     height: 90%;
-    background-image: url(../images/kim-rocket.png);
+    background-image: url(../images/kim-rocket-winner.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -171,7 +188,7 @@ main {
   .box {
     width: 30vw;
     height: 30vw;
-    border: 3px solid black;
+    border: 1px solid rgb(29, 121, 178);
   }
 
   .row:first-child .box,
@@ -194,8 +211,13 @@ main {
   }
 
   .new-game-btn {
+    /* color: rgb(255, 253, 79); */
+    color: rgb(255, 54, 54);
+    border: 0;
+    background-color: rgb(29, 121, 178);
     width: 100%;
     height: 15%;
-    font-size: 2em;
+    font-size: 2.5em;
+    font-family: 'Mali', cursive,'Gill Sans';
   }
 }
