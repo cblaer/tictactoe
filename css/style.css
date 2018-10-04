@@ -1,223 +1,39 @@
-* {
-  box-sizing: border-box;
-}
-
-html {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 80%;
-  background-color: mediumslateblue;
-  font-family: 'Mali', cursive,'Gill Sans';
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 60%;
-  height: 80%;
-  background-color: pink;
-}
-
-.logo {
-  width: 100%;
-  height: 100px;
-  background-color: lightgrey;
-  text-align: center;
-}
-
-.row {
-  display: flex;
-}
-
-.box {
-  height: 50px;
-  width: 50px;
-  border: 1px solid black;
-  margin: 0;
-}
-
-.new-game-btn {
-  width: 80%;
-  height: 75px;
-  border: 1px solid black;
-  background-color: red;
-}
-
-.player1.clicked {
-  background-image: url(../images/rocket-usa.png);
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.player2.clicked {
-  background-image: url(../images/rocket-nrthkorea.png);
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.players .active {
-  color: white;
-}
-
-#player1 .score, #player2 .score {
-  font-size: 30px;
-}
-
-@media (max-width: 400px) {
-  * {
-    box-sizing: border-box;
+@media (min-width: 400px) {  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
   }
   
-  html {
-    height: 100%;
-  }
-
-  body {
-    height: 100%;
-    margin: 0;
-    color: rgb(29, 121, 178);
-  }
-
   main {
-    /* background-image: -webkit-linear-gradient( white, rgb(254, 54, 54)); */
-    background-image: -webkit-radial-gradient(50% 65%, circle, white, rgb(254, 54, 54));
-    /* background-image: -webkit-radial-gradient(50% 65%, circle, white, rgb(254, 54, 54), rgb(178, 20, 20)); */
-    width: 100%;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    height: 80%;
   }
-
+  
   .logo {
     width: 100%;
-    height: 15%;
-    /* background-color: rgb(255, 253, 79);
-    background-image: url(../images/logo-blue.png); */
-    background-color: rgb(29, 121, 178);
-    /* background-image: url(../images/logo-yellow.png); */
-    background-image: url(../images/logo-lightred.png);
-    /* background-image: url(../images/logo-darkred.png); */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  .players {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    height: 40%;
-  }
-
-  #player1, #player2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-  }
-
-  .players.hidden {
-    display: none;
-  }
-
-  #player1 img, #player2 img {
-    width: 70%;
-  }
-
-  #player1.hidden, #player2.hidden {
-    display: none;
-  }
-
-  .row.hidden {
-    display: none;
-  }
-
-  .winner.hidden {
-    display: none;
-  }
-
-  .playing-field {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 70%;
-    justify-content: center;
-  }
-
-  .winner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     height: 20%;
-    width: 100%;
-    font-size: 2em;
-  }
-
-  .final-score {
-    font-size: 1.5em;
   }
 
   .winner-player1 {
     width: 90%;
-    height: 90%;
-    background-image: url(../images/trump-rocket-winner.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  .winner-player2 {
-    width: 90%;
-    height: 90%;
-    background-image: url(../images/kim-rocket-winner.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    height: 50%;
+    margin: 10px 0;
   }
 
   .box {
-    width: 30vw;
-    height: 30vw;
+    width: 7vw;
+    height: 7vw;
     border: 1px solid rgb(29, 121, 178);
   }
 
-  .row:first-child .box,
-  .row:last-child .box{
-    border-top: 0;
-    border-bottom: 0;
-  }
-
-  .row:first-child .box:first-child,
-  .row:first-child .box:last-child,
-  .row:last-child .box:first-child,
-  .row:last-child .box:last-child {
-    border: 0;
-  }
-
-  .row .box:first-child,
-  .row .box:last-child {
-    border-right: 0;
-    border-left: 0;
-  }
-
   .new-game-btn {
-    /* color: rgb(255, 253, 79); */
-    color: rgb(255, 54, 54);
-    border: 0;
-    background-color: rgb(29, 121, 178);
-    width: 100%;
-    height: 15%;
-    font-size: 2.5em;
-    font-family: 'Mali', cursive,'Gill Sans';
+    height: 20%;
   }
 }

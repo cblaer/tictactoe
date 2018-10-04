@@ -19,8 +19,8 @@ var player1Moves = [];
 var player1ScoreTextContent = document.querySelector('#player1 .score');
 var player1ScoreCount = 0;
 
-var player2Moves = [];
 var player2 = document.querySelector('.players #player2');
+var player2Moves = [];
 var player2ScoreTextContent = document.querySelector('#player2 .score');
 var player2ScoreCount = 0;
 
@@ -31,6 +31,9 @@ var winnerSection = document.querySelector('.winner');
 var winnerName = document.querySelector('.winner-name');
 var finalScore = document.querySelector('.final-score');
 var newGameButton = document.querySelector('.new-game-btn');
+
+// var intervalId = 0;
+// var timerValue = 5;
 
 function makeMove(event, activePlayer) {
   if(!event.target.classList.contains('clicked')) {
@@ -67,8 +70,12 @@ function checkForWin(activePlayer) {
       }
     }
     if(winningMoveCounter === boardSize) {
-      updateScore(activePlayer);
+      setTimeout(function(){
+        updateScore(activePlayer)
+      }, 300);
       break;
+    } else if (player1Moves.length + player2Moves.length === boardSize * boardSize) {
+      startNewGame();
     }
     winningMoveCounter = 0;
   }
@@ -120,7 +127,23 @@ function endGame(activePlayer) {
       finalScore.textContent = player2ScoreCount + ' to ' + player1ScoreCount;
     }
   }
+  // setCountdown();
 }
+
+// function setCountdown() {
+//   intervalId = window.setInterval(updateNewGameButtonCountdown, 1000);
+// }
+
+// function updateNewGameButtonCountdown() {
+//   if(timerValue === 0) {
+//     window.clearInterval(intervalId);
+//     intervalId = 0;
+//     startNewGame();
+//   } else {
+//     newGameButton.textContent = 'NEW ATTACK IN ' + timerValue;
+//     timerValue--;
+//   }
+// }
 
 function startNewGame() {
   player1Moves = [];
@@ -151,6 +174,9 @@ function startNewGame() {
   })
   winnerSection.classList.add('hidden');
   setStartingPlayerRandomly();
+  // newGameButton.textContent = 'NEW ATTACK';
+  // intervalId = 0;
+  // timerValue = 5;
 }
 
 function setStartingPlayerRandomly() {
