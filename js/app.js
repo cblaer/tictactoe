@@ -32,11 +32,11 @@ var winnerName = document.querySelector('.winner-name');
 var finalScore = document.querySelector('.final-score');
 var newGameButton = document.querySelector('.new-game-btn');
 
-var bombSound = new Audio('sounds/bomb.mp3');
-var makeMoveSound = new Audio('sounds/loadgun.mp3');
-var winnerSound = new Audio('sounds/winner.mp3');
-var trumpActive = new Audio('sounds/trump-active.mp3');
-var kimActive = new Audio('sounds/kim-active.mp3');
+var bombSound = new Audio('/tictactoe/sounds/bomb.mp3');
+var makeMoveSound = new Audio('/tictactoe/sounds/loadgun.mp3');
+var winnerSound = new Audio('/tictactoe/sounds/winner.mp3');
+var trumpActive = new Audio('/tictactoe/sounds/trump-active.mp3');
+var kimActive = new Audio('/tictactoe/sounds/kim-active.mp3');
 
 // var intervalId = 0;
 // var timerValue = 5;
