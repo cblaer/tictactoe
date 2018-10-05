@@ -32,10 +32,17 @@ var winnerName = document.querySelector('.winner-name');
 var finalScore = document.querySelector('.final-score');
 var newGameButton = document.querySelector('.new-game-btn');
 
+var bombSound = new Audio('../sounds/bomb.mp3');
+var makeMoveSound = new Audio('../sounds/loadgun.mp3');
+var winnerSound = new Audio('../sounds/winner.mp3');
+var trumpActive = new Audio('../sounds/trump-active.mp3');
+var kimActive = new Audio('../sounds/kim-active.mp3');
+
 // var intervalId = 0;
 // var timerValue = 5;
 
 function makeMove(event, activePlayer) {
+  playSounds('makeMoveSound');
   if(!event.target.classList.contains('clicked')) {
     event.target.classList.toggle(activePlayer);
     event.target.classList.toggle('clicked');
@@ -53,10 +60,12 @@ function alternatePlayers() {
     player2.classList.add('active');
     player1.classList.remove('active');
     activePlayer = 'player2';
+    playSounds('kimActive');
   } else {
     player1.classList.add('active');
     player2.classList.remove('active');
     activePlayer = 'player1';
+    playSounds('trumpActive');
   }
 }
 
@@ -70,9 +79,8 @@ function checkForWin(activePlayer) {
       }
     }
     if(winningMoveCounter === boardSize) {
-      setTimeout(function(){
-        updateScore(activePlayer)
-      }, 300);
+      playSounds('bombSound');
+      setTimeout(function(){updateScore(activePlayer)}, 300);
       break;
     } else if (player1Moves.length + player2Moves.length === boardSize * boardSize) {
       startNewGame();
@@ -85,7 +93,7 @@ function updateScore(activePlayer) {
   window[activePlayer + 'ScoreCount'] += 1;
   window[activePlayer + 'ScoreTextContent'].textContent = window[activePlayer + 'ScoreCount'] + ' / ' + boardSize;
   if (window[activePlayer + 'ScoreCount'] === boardSize) {
-    endGame(activePlayer);
+    setTimeout(function(){endGame(activePlayer)}, 1000);
   } else {
     player1Moves = [];
     player2Moves = [];
@@ -98,6 +106,7 @@ function updateScore(activePlayer) {
 }
 
 function endGame(activePlayer) {
+  playSounds('winnerSound');
   player1.classList.add('hidden');
   player2.classList.add('hidden');
   if(activePlayer === 'player1') {
@@ -183,10 +192,27 @@ function setStartingPlayerRandomly() {
   var randomPlayer = Math.floor((Math.random() * 2) + 1);
   if (randomPlayer === 1) {
     activePlayer = 'player1';
+    playSounds('trumpActive');
   } else {
     activePlayer = 'player2';
+    playSounds('kimActive');
   }
   window[activePlayer].classList.add('active');
+}
+
+function playSounds(sound) {
+  switch(sound) {
+    case 'bombSound': bombSound.play();
+    break;
+    case 'makeMoveSound': makeMoveSound.play();
+    break;
+    case 'winnerSound': winnerSound.play();
+    break;
+    case 'trumpActive': trumpActive.play();
+    break;
+    case 'kimActive': kimActive.play();
+    break;
+  }
 }
 
 boxes.forEach(function(box){

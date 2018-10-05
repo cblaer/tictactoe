@@ -24,13 +24,17 @@ main {
 }
 
 .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 10%;
   background-color: rgb(29, 121, 178);
-  background-image: url(../images/logo-lightred.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+}
+
+.logo img {
+  width: 90%;
+  height: 90%;
 }
 
 .row {
