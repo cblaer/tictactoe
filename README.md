@@ -1,5 +1,5 @@
 # Tic Tac Boom aka Tic Tac Toe
-![screenshot Tic Tac Boom](tictacboom-screenshot.png)
+![screenshot Tic Tac Boom](tictacboom-screenshot.png = 300x)
 
 ## Background
 Tic Tac Boom is the first small project I developed during General Assembly's Web Development Immersive course.
