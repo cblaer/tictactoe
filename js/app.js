@@ -38,8 +38,8 @@ var winnerSound = new Audio('/tictactoe/sounds/winner.mp3');
 var trumpActive = new Audio('/tictactoe/sounds/trump-active.mp3');
 var kimActive = new Audio('/tictactoe/sounds/kim-active.mp3');
 
-// var intervalId = 0;
-// var timerValue = 5;
+var intervalId = 0;
+var timerValue = 5;
 
 function makeMove(event, activePlayer) {
   playSounds('makeMoveSound');
@@ -136,23 +136,23 @@ function endGame(activePlayer) {
       finalScore.textContent = player2ScoreCount + ' to ' + player1ScoreCount;
     }
   }
-  // setCountdown();
+  setCountdown();
 }
 
-// function setCountdown() {
-//   intervalId = window.setInterval(updateNewGameButtonCountdown, 1000);
-// }
+function setCountdown() {
+  intervalId = window.setInterval(updateNewGameButtonCountdown, 1000);
+}
 
-// function updateNewGameButtonCountdown() {
-//   if(timerValue === 0) {
-//     window.clearInterval(intervalId);
-//     intervalId = 0;
-//     startNewGame();
-//   } else {
-//     newGameButton.textContent = 'NEW ATTACK IN ' + timerValue;
-//     timerValue--;
-//   }
-// }
+function updateNewGameButtonCountdown() {
+  if(timerValue === 0) {
+    window.clearInterval(intervalId);
+    intervalId = 0;
+    startNewGame();
+  } else {
+    newGameButton.textContent = 'NEW ATTACK IN ' + timerValue;
+    timerValue--;
+  }
+}
 
 function startNewGame() {
   player1Moves = [];
@@ -183,9 +183,10 @@ function startNewGame() {
   })
   winnerSection.classList.add('hidden');
   setStartingPlayerRandomly();
-  // newGameButton.textContent = 'NEW ATTACK';
-  // intervalId = 0;
-  // timerValue = 5;
+  newGameButton.textContent = 'NEW ATTACK';
+  window.clearInterval(intervalId);
+  intervalId = 0;
+  timerValue = 5;
 }
 
 function setStartingPlayerRandomly() {
