@@ -12,3 +12,4 @@ It was developed with a mobile-first approach in mind and uses HTML, CSS, JavaSc
 - Once a player reaches 3 points, the game is won.
 - The game will then count down from 5 and start a new game automatically.
 
+## TO DOs:
